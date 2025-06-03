@@ -63,12 +63,100 @@ async function updateChart() {
 
     const labels = Object.keys(rates).sort();
     const values = labels.map(date => rates[date][toCurrency.value]);
+    const isMobile = window.innerWidth <= 375;
+
+    
+
+    // Configurações específicas para mobile
+    const mobileOptions = {
+      layout: {
+        width: '100%',
+        padding: {
+          left: 10,
+          right: 10,
+          top: 10,
+          bottom: 10
+        }
+      },
+      plugins: {
+        legend: {
+          display: true // Oculta legenda em mobile
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            maxRotation: 45,
+            minRotation: 45,
+            color: '#8d8d99',
+            font: {
+              size: 8
+            }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#8d8d99',
+            font: {
+              size: 9
+            },
+            callback: function(value) {
+              return value.toFixed(3); // 3 casas decimais
+            }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          }
+        }
+      }
+    };
+
+    // Configurações para desktop
+    const desktopOptions = {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e1e1e6',
+            font: {
+              size: 12
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#8d8d99',
+            font: {
+              size: 11
+            }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#8d8d99',
+            font: {
+              size: 11
+            }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          }
+        }
+      }
+    };
 
     if (exchangeRateChart) {
       exchangeRateChart.destroy();
     }
 
-    exchangeRateChart = new Chart(ctx, {
+   exchangeRateChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
@@ -81,35 +169,17 @@ async function updateChart() {
           fill: true
         }]
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#e1e1e6'
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: '#8d8d99'
-            },
-            grid: {
-              color: 'rgba(255,255,255,0.1)'
-            }
-          },
-          y: {
-            ticks: {
-              color: '#8d8d99'
-            },
-            grid: {
-              color: 'rgba(255,255,255,0.1)'
-            }
-          }
-        }
-      }
+      options: isMobile ? mobileOptions : desktopOptions,
+      responsive: true,
+      maintainAspectRatio: false
     });
+
+    setTimeout(() => {
+      if (exchangeRateChart) {
+        exchangeRateChart.update();
+      }
+    }, 50); 
+
   } catch (e) {
     console.error("Erro ao atualizar gráfico:", e);
   }
@@ -420,6 +490,11 @@ form.addEventListener('submit', async (event) => {
 document.getElementById('updateChartBtn').addEventListener('click', updateChart);
 fromCurrency.addEventListener('change', updateChart);
 toCurrency.addEventListener('change', updateChart);
+window.addEventListener('resize', function() {
+  if (exchangeRateChart) {
+    exchangeRateChart.update();
+  }
+});
 
 
 

@@ -264,8 +264,8 @@ label {
     transform: translate(-50%, -50%);
     max-width: 100%;
     max-height: 100%;
-    z-index: 100;
-    background-color: #017452;
+    background: transparent;
+     z-index: 1000;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     padding: 20px;
@@ -351,8 +351,10 @@ label {
 
 
 #settingsModal {
-  z-index: 1000; /* Garante que fique acima de outros elementos */
-  background: transparent; /* Remove fundo duplicado */
+    z-index: 1000;
+    /* Garante que fique acima de outros elementos */
+    background: transparent;
+    /* Remove fundo duplicado */
 }
 
 .settings-btn {
@@ -572,6 +574,144 @@ input:checked+.slider:before {
 
 
 
+
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .chart-container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .chart-controls {
+        flex-direction: column;
+        align-items: end;
+        gap: 12px;
+    }
+
+    .currency-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    #converter-Btn,
+    .history-btn {
+        width: 100%;
+    }
+
+    .settings-btn {
+        top: 0px;
+        right: 10px;
+
+    }
+
+    .modal {
+        background: transparent;
+         z-index: 1000;
+        width: 60%;
+        height: auto;
+    }
+
+    .modal-content {
+        padding: 20px 15px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+     body {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .chart-container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .chart-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .currency-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    #converter-Btn,
+    .history-btn {
+        width: 100%;
+    }
+
+    .settings-btn {
+        top: 0px;
+        right: 10px;
+
+    }
+
+    .modal {
+         z-index: 1000;
+         background: transparent;
+        width: 90%;
+        height: auto;
+    }
+
+    .modal-content {
+        padding: 20px 15px;
+    }
+}
+
+
+@media (max-width: 375px) {
+  .chart-container {
+    width: 100vw;
+    margin-left: -20px;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  #exchangeRateChart {
+    width: 100% !important;
+    height: 220px !important;
+    margin: 0 auto;
+  }
+
+  .chart-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  #chartPeriod {
+    width: 60% !important;
+    min-width: 60%;
+  }
+
+  .chart-btn {
+    width: 35% !important;
+    min-width: 100px;
+    padding: 8px 5px;
+    font-size: 13px;
+  }
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -580,60 +720,4 @@ input:checked+.slider:before {
     100% {
         transform: rotate(360deg);
     }
-}
-
-
-
-@media (max-width: 768px) {
-    .container {
-        padding: 25px;
-    }
-
-    .currency-row {
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        gap: 10px;
-    }
-
-    .currency-input input,
-    .currency-select select {
-        min-width: 0;
-        font-size: 14px;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-
-    .container {
-        width: 95%;
-        /* Ocupa quase toda a tela */
-        padding: 20px 15px;
-        /* Reduz padding lateral */
-    }
-
-    input,
-    select {
-        padding: 10px 8px;
-        /* Padding mais compacto */
-        font-size: 14px;
-    }
-
-    label {
-        font-size: 13px;
-        /* Labels menores */
-    }
-}
-
-
-@media (max-width: 375px) {
-
-    .currency-input,
-    .currency-select {
-        min-width: 110px;
-        /* Ajuste fino */
-    }
-
 }
