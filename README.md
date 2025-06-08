@@ -1,5 +1,7 @@
 # 💱 Dev Conversor | Conversor de Moedas
+`Video ilustrativo`
 
+https://github.com/user-attachments/assets/afce912c-f32e-45bb-91b9-13247c8d0e41
 
 O **Dev Conversror App** O Conversor de Moedas é uma aplicação web totalmente funcional e interativa que permite ao usuário converter valores entre diferentes moedas utilizando taxas de câmbio em tempo real. O projeto é construído com HTML, CSS e JavaScript puro (Vanilla JS) e se conecta à API pública Frankfurter, que fornece dados atualizados de conversão.
 Essa aplicação foi idealizada com foco em simplicidade, responsividade e usabilidade, sendo um ótimo exemplo de consumo de API em projetos front-end. Além disso, oferece recursos adicionais que enriquecem a experiência do usuário, como histórico de conversões e configurações personalizáveis de atualização automática..
